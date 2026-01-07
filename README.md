@@ -1,6 +1,6 @@
 # MyHouse Showcase
 
-This repository provides an overview of MyHouse, which is designed to be an inventory control website. The source code is private, but a video demonstration is available to showcase the app's functionality.
+This repository provides an overview of MyHouse, an inventory control web app for tracking current stock and shipments.
 
 ---
 
@@ -11,9 +11,16 @@ Check out the live demonstration of the Django web app:
 ---
 
 ## 🌟 Features
-- **Feature 1**: Explanation of the functionality (e.g., user authentication, admin dashboard, dynamic forms, REST APIs).
-- **Feature 2**: Description of how it works or what it solves (e.g., visualizes data, performs specific tasks).
-- **Feature 3**: Details about additional tools, frameworks, or libraries used (e.g., PostgreSQL, Celery, Redis).
+- **Feature 1: Login and User Authentication ([timestamp](https://youtu.be/WvH4TcxvG14?t=18))**: Created using Django LoginRequiredMixin and UserCreationForm
+- **Feature 2: Item Query ([Search Timestamp](https://youtu.be/WvH4TcxvG14?t=103), [Adding Items Timestamp](https://youtu.be/WvH4TcxvG14?t=141))**: Search items, add new items to the warehouse, update item details. Made using item search
+- **Feature 3: Shipment Logic([New Shipment Timestamp](https://youtu.be/WvH4TcxvG14?t=241), [Pending Shipments Timestamp](https://youtu.be/WvH4TcxvG14?t=256), [Sending Status Updates Timestamp (starting here)](https://youtu.be/WvH4TcxvG14?t=316))**: Functionality for shipments, such as sending them out, checking status, and deleting shipments.
+
+---
+
+## 🌟 Database Modeling Choices: Documenting How I designed my backend and Reasoning
+- **Feature 1: Login and User Authentication ([timestamp](https://youtu.be/WvH4TcxvG14?t=18))**: Created using Django LoginRequiredMixin and UserCreationForm
+- **Feature 2: Item Query ([Search Timestamp](https://youtu.be/WvH4TcxvG14?t=103), [Adding Items Timestamp](https://youtu.be/WvH4TcxvG14?t=141))**: Search items, add new items to the warehouse, update item details. Made using item search
+- **Feature 3: Shipment Logic([New Shipment Timestamp](https://youtu.be/WvH4TcxvG14?t=241), [Pending Shipments Timestamp](https://youtu.be/WvH4TcxvG14?t=256), [Sending Status Updates Timestamp (starting here)](https://youtu.be/WvH4TcxvG14?t=316))**: Functionality for shipments, such as sending them out, checking status, and deleting shipments.
 
 ---
 
@@ -21,15 +28,13 @@ Check out the live demonstration of the Django web app:
 - **Django**: Backend framework for web development.
 - **Python**: The foundation for building robust models and logic.
 - **HTML/CSS**: For designing the front-end.
-- Optional: **PostgreSQL**, **REST APIs**, **Docker**, etc.
 
 ---
 
-## 🎯 Purpose or Goals
+## 🎯 Goals and Purpose
 ### Why I built this:
-Explain your motivation. For example:
-- **Learning goal**: Experimented with Django’s Model-View-Template (MVT) architecture.
-- **Project purpose**: Built to solve [X problem] or streamline [Y process].
+- **Learning goal**: Experimented with Django’s Model-View-Template (MVT) architecture, gaining experience in data modeling and developing a potentially useful website from scratch.
+- **Inspiration**: This was a project inspired by my experience as an associate at David Gooding Inc. and working with the company software and tracking system. I made this project with the hope of implementing my own logic and creativity on the way warehouse inventory could be managed and how shipments can be tracked.
 
 ---
 
