@@ -12,8 +12,9 @@ Check out the live demonstration of the Django web app:
 
 ## 🌟 Features
 - **Feature 1: Login and User Authentication ([timestamp](https://youtu.be/WvH4TcxvG14?t=18))**: Created using Django LoginRequiredMixin and UserCreationForm
-- **Feature 2: Item Query ([Search Timestamp](https://youtu.be/WvH4TcxvG14?t=103), [Adding Items Timestamp](https://youtu.be/WvH4TcxvG14?t=141))**: Search items, add new items to the warehouse, update item details. Made using item search
+- **Feature 2: Item Query ([Search Timestamp](https://youtu.be/WvH4TcxvG14?t=103), [Adding Items Timestamp](https://youtu.be/WvH4TcxvG14?t=141))**: Search items, add new items to the warehouse, update item details.
 - **Feature 3: Shipment Logic([New Shipment Timestamp](https://youtu.be/WvH4TcxvG14?t=241), [Pending Shipments Timestamp](https://youtu.be/WvH4TcxvG14?t=256), [Sending Status Updates Timestamp (starting here)](https://youtu.be/WvH4TcxvG14?t=316))**: Functionality for shipments, such as sending them out, checking status, and deleting shipments.
+- Items and Shipments made using Django models, forms, and views.
 
 ---
 
@@ -31,7 +32,7 @@ This section documents the database schema design and reasoning for a Django bac
 - `user` (foreign key to `django.contrib.auth.models.User`): Each warehouse is associated with one authenticated user.
 
 **Reasoning**:
-- In the current implementation, one user is linked to one warehouse upon account creation in a **one-to-one** relationship. (Potential improvement: one user in control of multiple warehouses)
+- In the current implementation, one user is linked to one warehouse upon account creation in a **one-to-one** relationship.
 - The `django.contrib.auth.models.User` model’s built-in primary key is used to uniquely identify each user.
 
 ---
@@ -62,7 +63,7 @@ This section documents the database schema design and reasoning for a Django bac
 
 **Reasoning**:
 - This an **intermediary table** that facilitates a **many-to-many** relationship between warehouses and items.
-- Separating `count` and `available_count` is an important nuance. A shipment can claim item quantities, but not be shipped out yet. We don't want to allow ship quantity to exceed the available amount, as this can take from other shipments. 
+- Separating `count` and `available_count` is an important nuance. A shipment can claim item quantities, but not be shipped out yet. We don't want future shipments to claim item amounts that previous shipments already claimed. 
 
 ---
 
@@ -76,12 +77,12 @@ This section documents the database schema design and reasoning for a Django bac
 - `date_shipped` (date): date shipment leaves the origin warehouse
 - `estimated_arrival` (date): Expected arrival date of the shipment
 - `status` (integer): Tracks the status ("Pending", "Shipped", "Received").
-- `skids (integer): Number of shipping units the shipment contains
+- `skids (integer): Number of shipping units the shipment contains. Think of skids as pallets that contain items.
 
 **Reasoning**:
 - `origin_warehouse` and `destination_warehouse` establish a **self-referencing relationship** on the warehouse model, linking shipments to warehouses.
 - `status` helps monitor the shipment’s lifecycle.
-- `shipment_date` is critical for scheduling and tracking transit times.
+- `date-shipped` and `estimated-arrival` are critical for scheduling and tracking transit times.
 - The origin warehouse creates the shipment, and the shipment_ID is automatically assigned.
 
 ---
@@ -96,9 +97,10 @@ This section documents the database schema design and reasoning for a Django bac
 
 **Reasoning**:
 - As shipments can involve multiple items and each item can be involved in multiple shipments, a **many-to-many relationship** is modeled using this intermediate table.
-- `quantity` ensures that the shipment tracks the count of each item.
-- Upon shipping out, count and available_count are updated
-- Upon received, count is updated
+- `count` ensures that the shipment tracks the count of each item.
+- Upon shipping out, count and available_count of the origin warehouse are updated.
+- Upon receival, count is updated in the target warehouse.
+  
 ---
 
 ## 📚 Summary
