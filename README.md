@@ -13,7 +13,7 @@ Check out the live demonstration of the Django web app:
 ## 🌟 Features
 - **Feature 1: Login and User Authentication ([timestamp](https://youtu.be/WvH4TcxvG14?t=18))**: Created using Django LoginRequiredMixin and UserCreationForm
 - **Feature 2: Item Query ([Search Timestamp](https://youtu.be/WvH4TcxvG14?t=103), [Adding Items Timestamp](https://youtu.be/WvH4TcxvG14?t=141))**: Search items, add new items to the warehouse, update item details.
-- **Feature 3: Shipment Logic([New Shipment Timestamp](https://youtu.be/WvH4TcxvG14?t=241), [Pending Shipments Timestamp](https://youtu.be/WvH4TcxvG14?t=256), [Sending Status Updates Timestamp (starting here)](https://youtu.be/WvH4TcxvG14?t=316))**: Functionality for shipments, such as sending them out, checking status, and deleting shipments.
+- **Feature 3: Shipment Logic([New Shipment Timestamp](https://youtu.be/WvH4TcxvG14?t=217), [Pending Shipments Timestamp](https://youtu.be/WvH4TcxvG14?t=256), [Sending Status Updates Timestamp (starting here)](https://youtu.be/WvH4TcxvG14?t=316))**: Functionality for shipments, such as sending them out, checking status, and deleting shipments.
 - Items and Shipments made using Django models, forms, and views.
 
 ---
@@ -47,7 +47,7 @@ This section documents the database schema design and reasoning for a Django bac
 
 **Reasoning**:
 - I chose to give items its own schema because it streamlines the possibility of multiple warehouses storing the same item, as well as updating attributes when shipments come into a warehouse (through the primary key).
-- It also allows items to not be present in any warehouse but still be existing in the overarching database. (potential improvement: better search function)
+- It also allows items to not be present in any warehouse but still be existing in the overarching database.
 
 ---
 
