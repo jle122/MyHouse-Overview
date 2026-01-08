@@ -32,7 +32,7 @@ This section documents the database schema design and reasoning for a Django bac
 - `user` (foreign key to `django.contrib.auth.models.User`): Each warehouse is associated with one authenticated user.
 
 **Reasoning**:
-- In the current implementation, one user is linked to one warehouse upon account creation in a **one-to-one** relationship.
+- In the current implementation, one user is linked to one warehouse upon account creation in a **one-to-one** relationship. Future implementations may feature a **one-to-many** relationship, where one user can track multiple warehouses.
 - The `django.contrib.auth.models.User` model’s built-in primary key is used to uniquely identify each user.
 
 ---
@@ -47,7 +47,7 @@ This section documents the database schema design and reasoning for a Django bac
 
 **Reasoning**:
 - I chose to give items its own schema because it streamlines the possibility of multiple warehouses storing the same item, as well as updating attributes when shipments come into a warehouse (through the primary key).
-- It also allows items to not be present in any warehouse but still be existing in the overarching database.
+- It also allows items to not be present in any warehouse but still be existing in the overarching database, ensuring that items are not dependent on a link to a warehouse.
 
 ---
 
@@ -55,8 +55,8 @@ This section documents the database schema design and reasoning for a Django bac
 **Purpose**: To track associations between warehouses and the items stored within them.
 
 **Attributes**:
-- `warehouse` (foreign key): The warehouse where the item is currently stored.
-- `item` (foreign key): The corresponding item in the overarching database.
+- `warehouse` (foreign key to Warehouse): The warehouse where the item is currently stored.
+- `item` (foreign key to Item): The corresponding item in the overarching database.
 - `count` (integer): Total quantity in the warehouse.
 - `available_count` (integer): Available quantity that is able to be shipped.
 - `location` (string): Where the item is located in the warehouse.
@@ -72,8 +72,8 @@ This section documents the database schema design and reasoning for a Django bac
 
 **Attributes**:
 - `shipment_ID` (primary key): Unique identifier for the shipment.
-- `origin_warehouse` (foreign key): The warehouse the shipment is sent from.
-- `destination_warehouse` (foreign key): The warehouse the shipment is sent to.
+- `origin_warehouse` (foreign key to Warehouse): The warehouse the shipment is sent from.
+- `destination_warehouse` (foreign key to Warehouse): The warehouse the shipment is sent to.
 - `date_shipped` (date): date shipment leaves the origin warehouse
 - `estimated_arrival` (date): Expected arrival date of the shipment
 - `status` (integer): Tracks the status ("Pending", "Shipped", "Received").
@@ -91,8 +91,8 @@ This section documents the database schema design and reasoning for a Django bac
 **Purpose**: To link items to shipments, tracking the quantity of items involved in each shipment.
 
 **Attributes**:
-- `shipment` (foreign key): Links to the associated shipment.
-- `item` (foreign key): Links to the item being moved in the shipment. 
+- `shipment` (foreign key to Shipment): Links to the associated shipment.
+- `item` (foreign key to WarehouseItem): Links to the WarehouseItem being moved in the shipment. 
 - `count` (integer): The number of items in the shipment.
 
 **Reasoning**:
@@ -108,6 +108,8 @@ This database design emphasizes:
 1. **Relational & Referential Integrity**: Proper use of foreign keys to establish relationships between models.
 2. **Modular Design**: Relating warehouses, items, and shipments in clearly defined schemas.
 3. **Scalability**: Allowing for multiple warehouses, items, and shipments, which makes the system extendable.
+I designed this schema based on what made sense to me and the project, but please feel free to share how you would approach this!
+   
 
 ---
 
@@ -126,4 +128,4 @@ This database design emphasizes:
 ---
 
 ## 🔒 Private Repository
-For various reasons (e.g., confidentiality, ongoing development), the source code for this project cannot be shared publicly. Feel free to watch the video demo or reach out for further discussion about the app.
+The source code for this project cannot be shared publicly. Feel free to watch the video demo or reach out for further discussion about the app.
