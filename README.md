@@ -13,7 +13,7 @@ Check out the live demonstration of the Django web app:
 ## 🌟 Features
 - **Feature 1: Login and User Authentication ([timestamp](https://youtu.be/WvH4TcxvG14?t=18))**: Created using Django LoginRequiredMixin and UserCreationForm
 - **Feature 2: Item Query ([Search Timestamp](https://youtu.be/WvH4TcxvG14?t=103), [Adding Items Timestamp](https://youtu.be/WvH4TcxvG14?t=141))**: Search items, add new items to the warehouse, update item details.
-- **Feature 3: Shipment Logic([New Shipment Timestamp](https://youtu.be/WvH4TcxvG14?t=217), [Pending Shipments Timestamp](https://youtu.be/WvH4TcxvG14?t=256), [Sending Status Updates Timestamp (starting here)](https://youtu.be/WvH4TcxvG14?t=316))**: Functionality for shipments, such as sending them out, checking status, and deleting shipments.
+- **Feature 3: Shipment Logic ([New Shipment Timestamp](https://youtu.be/WvH4TcxvG14?t=217), [Pending Shipments Timestamp](https://youtu.be/WvH4TcxvG14?t=256), [Sending Status Updates Timestamp (starting here)](https://youtu.be/WvH4TcxvG14?t=316))**: Functionality for shipments, such as sending them out, checking status, and deleting shipments.
 - Items and Shipments made using Django models, forms, and views.
 
 ---
@@ -108,7 +108,8 @@ This database design emphasizes:
 1. **Relational & Referential Integrity**: Proper use of foreign keys to establish relationships between models.
 2. **Modular Design**: Relating warehouses, items, and shipments in clearly defined schemas.
 3. **Scalability**: Allowing for multiple warehouses, items, and shipments, which makes the system extendable.
-I designed this schema based on what made sense to me and the project, but please feel free to share how you would approach this!
+- I designed this schema based on what made sense to me and the project, but please feel free to share how you would approach this! Below is the rough schema for the database.
+<img src="MyHouse-schema.png" alt="Diagram" width="600" height="900">
    
 
 ---
